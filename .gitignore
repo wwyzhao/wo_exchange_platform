@@ -1,0 +1,10 @@
+.idea
+cmake-build-debug
+CMakeCache.txt
+CMakeFiles/
+DBFile/
+Makefile
+cmake_install.cmake
+libExchange_platformLib.a
+.vscode/
+Exchange_platform
