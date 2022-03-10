@@ -3,7 +3,7 @@ C++ Exchange_platform
 
 ## How to run
 ```bash
-cmake .
+cmake . -G "Unix Makefiles"
 make
 ./Exchange_platform
 ```
