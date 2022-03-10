@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ADMINS_H
 #define ADMINS_H
 class Admins {
@@ -5,8 +6,8 @@ class Admins {
 	const char admin_code[10];
 public:
 	Admins() :admin_name("admin"), admin_code("123456") {
+
 	}
-	
 	void admin_menu();
 	bool admin_login();
 	void admin_check_goods();
@@ -18,8 +19,6 @@ public:
 	void admin_logout();
 
 };
-
 void admins_module();
-
 #endif // ADMINS_H
 

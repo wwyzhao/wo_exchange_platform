@@ -1,40 +1,50 @@
 #include<iostream>
 #include "Admins.h"
+#include<fstream> 
+#include "../platform/wo_exchange.h"
 using namespace std;
 
 void Admins::admin_menu() {
-	cout << "====================================================================================" << endl;
-	cout << "1.�鿴������Ʒ 2.������Ʒ 3.�¼���Ʒ 4.�鿴���ж��� 5.�鿴�����û� 6.����û� 7.ע��" << endl;
-	cout << "====================================================================================" << endl;
+	cout << "=============================================================================================" << endl;
+	cout << "1.check goods 2.search goods 3.delete goods 4.check orders 5.check users 6.forbid users 7.logout" << endl;
+	cout << "=============================================================================================" << endl;
 }
-
 bool Admins::admin_login() {
 	char input_name[100];
 	char input_code[100];
-	cout << "���������Ա������";
+	cout << "Please enter your name:";
 	cin >> input_name;
+	cout << "Please enter your password:";
 	cin >> input_code;
 	if (input_name != admin_name) {
-		cout << "-----------����Ա�������󣬵�½ʧ�ܣ��������˵�-----------" << endl;
+		cout << "-----------Wrong name! Back to main menu...-----------" << endl;
 		return false;
 	}
 	else if (input_code != admin_code) {
-		cout << "-----------������󣬵�½ʧ�ܣ��������˵�-----------" << endl;
+		cout << "-----------Wrong password! Back to main menu...-----------" << endl;
 		return false;
 	}
 	else {
-		cout << "-----------��¼�ɹ�-----------" << endl;
+		cout << "-----------Successfully login!-----------" << endl;
 		return true;
 	}
 }
-
 void Admins::admin_check_goods(){
-	FILE *fp=fopen("../../files/commodity.txt", "rw");
-	if (fp==NULL) exit(-1);
-
+	ifstream infile;
+	infile.open("D:\\Desktop\\WO_exchange_platform\\exchange_platform\\files\\commodity.txt", ios::in);
+	if (!infile.is_open()) exit(-1);
+	char buf[1024];
+	cout << "-----------------------------------------" << endl;
+	while (infile.getline(buf,sizeof(buf)))
+	{
+		for(int i=0;buf[i];++i){
+			if(buf[i]==',')cout << '\t';
+			else cout << buf[i];
+		}
+		cout << endl;
+	}
+	cout << "-----------------------------------------" << endl;
 }
-
-
 void Admins::admin_search_goods(){
 
 }
@@ -51,21 +61,20 @@ void Admins::admin_forbid_users(){
 
 }
 void Admins::admin_logout(){
-
+	
 }
-
 
 void admins_module() {
 	Admins AA;
 	if (!AA.admin_login()) return;/////////
-	int choice;//����û�����
+	int choice;
 	while (true) {
 		system("cls");
 		AA.admin_menu();
-		cout << "������һ������:";
+		cout << "Please enter a number:";
 		cin >> choice;
 		while (!cin) {
-			cout << "�������������һ������:";
+			cout << "Error! Please enter a number:";
 			cin.clear();
 			cin.sync();
 			cin >> choice;
@@ -78,7 +87,7 @@ void admins_module() {
 		case 5:AA.admin_check_users(); break;
 		case 6:AA.admin_forbid_users(); break;
 		case 7:AA.admin_logout(); break;
-		default:cout << "�������������һ��1-7������:" << endl; break;
+		default:cout << "Error! Please enter a number:" << endl; break;
 		}
 	}
 }
