@@ -8,3 +8,9 @@ cmake_install.cmake
 libExchange_platformLib.a
 .vscode/
 Exchange_platform
+
+# for windows complie
+*.sln
+*.filters
+*.vcxproj
+build
