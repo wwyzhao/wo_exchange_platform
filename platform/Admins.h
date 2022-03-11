@@ -1,13 +1,19 @@
-#pragma once
 #ifndef ADMINS_H
 #define ADMINS_H
-class Admins {
-	const char admin_name[10];
-	const char admin_code[10];
-public:
-	Admins() :admin_name("admin"), admin_code("123456") {
+#include<iostream>
+#include<fstream>
+#include<string.h>
+using namespace std;
 
-	}
+class Admins {
+	string admin_name="admin";
+	string admin_code="123456";
+public:
+	Admins(){
+		//for(int i=5;i<100;++i)admin_name[i]=0;
+		//for(int i=6;i<100;++i)admin_code[i]=0;
+		
+	} /////////////////////////////////Admins() ~Admins!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	void admin_menu();
 	bool admin_login();
 	void admin_check_goods();
