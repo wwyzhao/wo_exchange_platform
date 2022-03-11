@@ -14,3 +14,4 @@ Exchange_platform
 *.filters
 *.vcxproj
 build
+*.exe
