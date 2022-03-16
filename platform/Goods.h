@@ -1,3 +1,6 @@
+#include<iostream>
+#include<string>
+using namespace std;
 #ifndef GOODS_H
 #define GOODS_H
 class goods {

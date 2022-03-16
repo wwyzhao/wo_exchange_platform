@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 add_library(Exchange_platformLib STATIC
         platform/wo_exchange
         platform/Admins
+        platform/Goods
+        platform/Users
         run/run_exchange_platform
 )
 

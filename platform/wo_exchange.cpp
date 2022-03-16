@@ -1,5 +1,5 @@
 #include<iostream>
-#include <unistd.h>
+//#include <unistd.h>
 #include "Admins.h"
 #include "wo_exchange.h"
 using namespace std;
@@ -29,7 +29,7 @@ void wo_exchange() {
 		case 1:admins_module(); break;
 		case 2:users_signup(); break;
 		case 3:users_login(); break;
-		case 4:exit(-1); cout <<"Exit.."; sleep(1); return; break;
+		case 4:exit(-1); cout <<"Exit.."; return; break; //在前面sleep(1); 
 		default:cout << "Error! Please enter a number:" ; break;
 		}
 	}

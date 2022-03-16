@@ -1,9 +1,9 @@
-#ifndef ADMINS_H
-#define ADMINS_H
 #include<iostream>
 #include<fstream>
-#include<string.h>
+#include<string>
 using namespace std;
+#ifndef ADMINS_H
+#define ADMINS_H
 
 class Admins {
 	string admin_name="admin";

@@ -1,12 +1,16 @@
+#include<iostream>
+#include<string>
+using namespace std;
 #ifndef USERS_H
 #define USERS_H
+
 class Users {
-	string user_name[100];
-	string user_code[100];
-    string user_ID[100];
-    string user_tel[100];
-    string user_address[100];
-    string user_balance[100];
+	string user_name;
+	string user_code;
+    string user_ID;
+    string user_tel;
+    string user_address;
+    string user_balance;
     bool user_state;
 public:
 	Users(){

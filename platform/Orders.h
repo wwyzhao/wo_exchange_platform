@@ -1,3 +1,6 @@
+#include<iostream>
+#include<string>
+using namespace std;
 #ifndef ORDERS_H
 #define ORDERS_H
 class orders {
