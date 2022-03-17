@@ -1,5 +1,6 @@
 #include "Admins.h"
 #include "Goods.h"
+#include "Orders.h"
 #include "../platform/wo_exchange.h"
 
 void Admins::admin_menu() {
@@ -10,12 +11,8 @@ void Admins::admin_menu() {
 bool Admins::admin_login() {
 	string input_name;
 	string input_code;
-	//for(int i=0;i<100;++i)input_name[i]='0';
-	//for(int i=0;i<100;++i)input_code[i]='0';
 	cout << "Please enter your name:";   
 	cin >> input_name;
-	//for(int i=0;input_name[i];++i)cout<<input_name[i]<<endl;
-	//for(int i=0;admin_name[i];++i)cout<<admin_name[i];cout<<endl;
 	cout << "Please enter your password:";
 	cin >> input_code;
 	if (input_name!=admin_name) {
@@ -94,25 +91,16 @@ void Admins::admin_del_goods(){
 		cout<<"Not to delete this good"<<endl;
 	}
 }
-void Admins::admin_check_orders(){
-	ifstream infile;
-	infile.open("../files/order.txt", ios::in);
-	if (!infile.is_open()) exit(-1);
-	char buf[1024];
+void Admins::admin_check_orders(){//TODO tab print
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	infile.getline(buf,sizeof(buf));
-	for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t';}
-			else cout << buf[i];
-		}
-	cout << endl;
-	while (infile.getline(buf,sizeof(buf)))
-	{
-		for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t'; cout << '\t';}
-			else cout << buf[i];
-		}
-		cout << endl;
+	int i=0;
+	for(i=0;i<6;++i){
+		cout<<order_title[i]<<'\t';
+	}
+	cout<<order_title[i]<<endl;
+	int j=0;
+	for(int j=0;j<order_count;++j){
+		order_list[j].order_show();
 	}
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -150,6 +138,8 @@ void Admins::admin_logout(){
 void admins_module() {
 	goods GG;
 	GG.good_read();
+	orders OO;
+	OO.order_read();
 	Admins AA;
 	if (!AA.admin_login()) return;/////////
 	int choice;
