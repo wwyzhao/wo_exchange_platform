@@ -2,10 +2,9 @@
 //#include <unistd.h>
 #include "Admins.h"
 #include "Goods.h"
+#include "Users.h"
 #include "wo_exchange.h"
 using namespace std;
-
-
 
 void users_signup() {
 	
