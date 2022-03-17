@@ -1,4 +1,5 @@
 #include "Admins.h"
+#include "Goods.h"
 #include "../platform/wo_exchange.h"
 
 void Admins::admin_menu() {
@@ -29,24 +30,15 @@ bool Admins::admin_login() {
 	return true;
 }
 void Admins::admin_check_goods(){  
-	ifstream infile;
-	infile.open("../files/commodity.txt", ios::in);
-	if (!infile.is_open()) exit(-1);
-	char buf[1024];
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	infile.getline(buf,sizeof(buf));
-	for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t';}
-			else cout << buf[i];
-		}
-	cout << endl;
-	while (infile.getline(buf,sizeof(buf)))
-	{
-		for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t'; cout << '\t';}
-			else cout << buf[i];
-		}
-		cout << endl;
+	int i=0;
+	for(i=0;i<7;++i){
+		cout<<good_title[i]<<'\t';
+	}
+	cout<<good_title[i]<<endl;
+	int j=0;
+	for(int j=0;j<good_count;++j){
+		good_list[j].good_show();
 	}
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
@@ -61,14 +53,21 @@ void Admins::admin_search_goods(){
 	ifstream infile;
 	infile.open("../files/commodity.txt", ios::in);
 	if (!infile.is_open()) exit(-1);
-	string title, buf;
+	string buf, title;
+	//infile>>title;
 	getline(infile, title, '\n');
+	cout<<title<<endl;
+	//cout << endl;
 	while (!infile.eof()){
-		getline(infile, buf, '\n');
+		infile>>buf;
+		for(int i=0;buf[i];++i){
+			if(buf[i]==','){cout << '\t';}
+			else cout << buf[i];}
+		cout<<endl;
 		if((buf.find(input_name))!=-1){
 			if(!flag){
 				for(int i=0;title[i];++i){
-					if(buf[i]==','){cout << '\t';}
+					if(title[i]==','){cout << '\t';}
 					else cout << title[i];
 				}
 				cout << endl;
@@ -93,10 +92,10 @@ void Admins::admin_del_goods(){
 	cin >> input_ID;
 	cout<<"Are you sure to delete this good?"<<endl;
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	for(int i=0;title[i];++i){
-		if(buf[i]==','){cout << '\t';}
-		else cout << title[i];
-	}
+	// for(int i=0;title[i];++i){
+	// 	if(buf[i]==','){cout << '\t';}
+	// 	else cout << title[i];
+	// }
 	cout << endl;
 	int index=-1;
 	ifstream infile;
@@ -118,7 +117,7 @@ void Admins::admin_del_goods(){
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	cout<<"Please choose(y/n):";
 	cin>>input_yn;
-	if(input_yn=='y'){   //////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	if(input_yn[0]=='y'){   //////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		cout<<"Successfully delete this good"<<endl;
 
 	}
@@ -126,7 +125,7 @@ void Admins::admin_del_goods(){
 		cout<<"Not to delete this good"<<endl;
 	}
 
-	if(!flag)cout<<"Good not found! Back to the Admins menu..."<<endl;
+	//if(!flag)cout<<"Good not found! Back to the Admins menu..."<<endl;
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 }
@@ -184,6 +183,8 @@ void Admins::admin_logout(){
 }
 
 void admins_module() {
+	goods GG;
+	GG.good_read();
 	Admins AA;
 	if (!AA.admin_login()) return;/////////
 	int choice;
