@@ -8,6 +8,7 @@ add_library(Exchange_platformLib STATIC
         platform/Admins
         platform/Goods
         platform/Users
+        platform/Orders
         run/run_exchange_platform
 )
 

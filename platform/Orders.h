@@ -3,6 +3,7 @@
 using namespace std;
 #ifndef ORDERS_H
 #define ORDERS_H
+
 class orders {
 	string order_ID;
     string good_ID;  ////////////////////friend?!!!!!!!!!!!!!!!!
@@ -23,6 +24,7 @@ public:
 	//void seller_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
 	//void buyer_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
 };
+
 extern orders order_list[100];
 extern int order_count;
 extern const char* order_title[7];

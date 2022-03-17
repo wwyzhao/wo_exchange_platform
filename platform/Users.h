@@ -1,21 +1,25 @@
 #include<iostream>
 #include<string>
+#include "Admins.h"
 using namespace std;
 #ifndef USERS_H
 #define USERS_H
 
-class Users {
-	string user_name;
-	string user_code;
+class users {
     string user_ID;
+    string user_name;
+    string user_password;
     string user_tel;
     string user_address;
     string user_balance;
     bool user_state;
+    friend void Admins::admin_forbid_users();
 public:
-	Users(){
+	users(){
 
 	}
+    void user_read();
+    void user_show();
 	bool user_signup();
 	bool user_login();
     void user_menu();
@@ -25,10 +29,13 @@ public:
 	void user_logout();
 
 };
+extern users user_list[100];
+extern int user_count;
+extern const char* user_title[7];
 void users_signup();
 void users_login();
 
-class Buyers: public Users {
+class buyers: public users {
     string buyer_ID;
  public:
     void buyer_menu();
@@ -40,7 +47,7 @@ class Buyers: public Users {
     void back_to_users();
 };
 
-class Sellers: public Users {
+class sellers: public users {
     string seller_ID;
  public:
     void seller_menu();

@@ -1,7 +1,8 @@
 #include "Admins.h"
 #include "Goods.h"
 #include "Orders.h"
-#include "../platform/wo_exchange.h"
+#include "Users.h"
+#include "wo_exchange.h"
 
 void Admins::admin_menu() {
 	cout << "===================================================================================================" << endl;
@@ -106,30 +107,52 @@ void Admins::admin_check_orders(){//TODO tab print
 
 }
 void Admins::admin_check_users(){
-	ifstream infile;
-	infile.open("../files/user.txt", ios::in);
-	if (!infile.is_open()) exit(-1);
-	char buf[1024];
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	infile.getline(buf,sizeof(buf));
-	for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t';}
-			else cout << buf[i];
-		}
-	cout << endl;
-	while (infile.getline(buf,sizeof(buf)))
-	{
-		for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t'; cout << '\t';}
-			else cout << buf[i];
-		}
-		cout << endl;
+	int i=0;
+	for(i=0;i<6;++i){
+		cout<<user_title[i]<<'\t';
+	}
+	cout<<user_title[i]<<endl;
+	int j=0;
+	for(int j=0;j<user_count;++j){
+		user_list[j].user_show();
 	}
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 }
 void Admins::admin_forbid_users(){
-
+	string input_ID, input_yn;
+	cout << "Please enter the user's ID you want to delete:";   
+	cin >> input_ID;
+	cout<<"Are you sure to forbid this user?"<<endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	int k=0;
+	for(k=0;k<6;++k){
+		cout<<user_title[k]<<'\t';
+	}
+	cout<<user_title[k]<<endl;
+	int i=0;
+	for(i=0;i<user_count;++i){
+		if(user_list[i].user_ID==input_ID){
+			user_list[i].user_show();
+			break;
+		}
+	}
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout<<"Please choose(y/n):";
+	cin>>input_yn;
+	if(input_yn[0]=='y'){   // TODO////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! good file and user file
+		user_list[i].user_state=0;
+		for(i=0;i<good_count;++i){
+			if(good_list[i].seller_ID==user_list[i].user_ID){
+				good_list[i].good_state=0;
+			}
+		}
+		cout<<"Successfully forbid this user"<<endl;
+	}
+	else{
+		cout<<"Not to forbid this user"<<endl;
+	}
 }
 void Admins::admin_logout(){
 	cout<<"log out! Back to the main menu..."<<endl;
@@ -140,6 +163,8 @@ void admins_module() {
 	GG.good_read();
 	orders OO;
 	OO.order_read();
+	users UU;
+	UU.user_read();
 	Admins AA;
 	if (!AA.admin_login()) return;/////////
 	int choice;

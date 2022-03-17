@@ -16,6 +16,7 @@ class goods {
 	bool good_state;
 	friend void Admins::admin_search_goods();
 	friend void Admins::admin_del_goods();
+	friend void Admins::admin_forbid_users();
 public:
 	goods(){
 
