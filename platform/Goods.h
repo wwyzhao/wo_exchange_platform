@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include "Admins.h"
 using namespace std;
 #ifndef GOODS_H
 #define GOODS_H
@@ -13,6 +14,8 @@ class goods {
 	string seller_ID;
 	string good_added_date;
 	bool good_state;
+	friend void Admins::admin_search_goods();
+	friend void Admins::admin_del_goods();
 public:
 	goods(){
 

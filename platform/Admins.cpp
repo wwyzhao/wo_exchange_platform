@@ -29,7 +29,7 @@ bool Admins::admin_login() {
 	cout << "-----------Successfully login!-----------" << endl;
 	return true;
 }
-void Admins::admin_check_goods(){  
+void Admins::admin_check_goods(){  //TODOtab print
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	int i=0;
 	for(i=0;i<7;++i){
@@ -44,40 +44,21 @@ void Admins::admin_check_goods(){
 }
 void Admins::admin_search_goods(){
 	string input_name;
-	//for(int i=0;i<100;++i)input_name[i]='0';
-	//for(int i=0;i<100;++i)input_code[i]='0';
+	int flag=0;
 	cout << "Please enter the good's name:";   
 	cin >> input_name;
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	int flag=0, index=-1;
-	ifstream infile;
-	infile.open("../files/commodity.txt", ios::in);
-	if (!infile.is_open()) exit(-1);
-	string buf, title;
-	//infile>>title;
-	getline(infile, title, '\n');
-	cout<<title<<endl;
-	//cout << endl;
-	while (!infile.eof()){
-		infile>>buf;
-		for(int i=0;buf[i];++i){
-			if(buf[i]==','){cout << '\t';}
-			else cout << buf[i];}
-		cout<<endl;
-		if((buf.find(input_name))!=-1){
+	for(int i=0;i<good_count;++i){
+		if((good_list[i].good_name.find(input_name))!=-1){
 			if(!flag){
-				for(int i=0;title[i];++i){
-					if(title[i]==','){cout << '\t';}
-					else cout << title[i];
+				int k=0;
+				for(k=0;k<7;++k){
+					cout<<good_title[k]<<'\t';
 				}
-				cout << endl;
+				cout<<good_title[k]<<endl;
 			}
+			good_list[i].good_show();
 			flag=1;
-			for(int i=0;buf[i];++i){
-				if(buf[i]==','){cout << '\t';cout << '\t';}
-				else cout << buf[i];
-			}
-			cout << endl;
 		}
 	}
 	if(!flag)cout<<"Good not found! Back to the Admins menu..."<<endl;
@@ -86,48 +67,32 @@ void Admins::admin_search_goods(){
 
 void Admins::admin_del_goods(){
 	string input_ID, input_yn;
-	//for(int i=0;i<100;++i)input_name[i]='0';
-	//for(int i=0;i<100;++i)input_code[i]='0';
 	cout << "Please enter the good's ID you want to delete:";   
 	cin >> input_ID;
 	cout<<"Are you sure to delete this good?"<<endl;
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	// for(int i=0;title[i];++i){
-	// 	if(buf[i]==','){cout << '\t';}
-	// 	else cout << title[i];
-	// }
-	cout << endl;
-	int index=-1;
-	ifstream infile;
-	infile.open("../files/commodity.txt", ios::in);
-	if (!infile.is_open()) exit(-1);
-	string title, buf;
-	getline(infile, title, '\n');
-	while (!infile.eof()){
-		getline(infile, buf, '\n');
-		if((buf.find(input_ID))!=-1){
-			for(int i=0;buf[i];++i){
-				if(buf[i]==','){cout << '\t';cout << '\t';}
-				else cout << buf[i];
-			}
-			cout << endl;  
+	int k=0;
+	for(k=0;k<7;++k){
+		cout<<good_title[k]<<'\t';
+	}
+	cout<<good_title[k]<<endl;
+	int i=0;
+	for(i=0;i<good_count;++i){
+		if(good_list[i].good_ID==input_ID){
+			good_list[i].good_show();
 			break;
 		}
 	}
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	cout<<"Please choose(y/n):";
 	cin>>input_yn;
-	if(input_yn[0]=='y'){   //////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	if(input_yn[0]=='y'){   // TODO////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		good_list[i].good_state=0;
 		cout<<"Successfully delete this good"<<endl;
-
 	}
 	else{
 		cout<<"Not to delete this good"<<endl;
 	}
-
-	//if(!flag)cout<<"Good not found! Back to the Admins menu..."<<endl;
-	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-
 }
 void Admins::admin_check_orders(){
 	ifstream infile;
