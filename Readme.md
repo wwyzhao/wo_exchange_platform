@@ -19,13 +19,3 @@ git commit -m "commit message"
 # To push
 git push
 ```
-
-## How to write code
-If you add a new cpp, please add them to CMakeLists:
-```bash
-add_library(Exchange_platformLib STATIC
-        platform/wo_exchange
-        platform/Admins
-        XXX/XXX <--- add new cpp to here!!!!
-)
-```
