@@ -25,6 +25,7 @@ class goods {
 	friend void buyers::buyer_check_goods(string userID);
 	friend void buyers::buyer_check_goods_info(string userID);
 	friend void buyers::buy_goods(string userID);
+	friend double is_buy_success(string userID, string input_ID, int input_number);
 public:
 	goods(){
 

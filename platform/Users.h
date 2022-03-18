@@ -16,6 +16,7 @@ class users {
     friend void Admins::admin_forbid_users();
     friend void users_signup();
     friend void users_login();
+    friend double is_buy_success(string userID, string input_ID, int input_number);
 public:
 	users(){
 
@@ -26,7 +27,12 @@ public:
     void users_module(string userID);
 	void buyer_module(string userID);
 	void seller_module(string userID);
-	void user_self_info();
+	void user_self_info(string userID);
+    void user_self_info_menu();
+    void check_self_info(string userID);
+    void change_self_info(string userID);
+    void recharge(string userID);
+    void back_to_users();
 	void user_logout();
 
 };
@@ -35,7 +41,7 @@ extern int user_count;
 extern const char* user_title[7];
 void users_signup();
 void users_login();
-double is_buy_success(string input_ID, int input_number);
+double is_buy_success(string userID, string input_ID, int input_number);
 
 
 

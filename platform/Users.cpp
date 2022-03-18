@@ -220,13 +220,16 @@ void buyers::buy_goods(string userID){
     cin>>input_number;
     int i=0, flag=0;
     for(i=0;i<good_count;++i){
-        if(good_list[i].good_ID==input_ID && good_list[i].good_state==1){
+        if(good_list[i].good_ID==input_ID && good_list[i].good_state==1 && good_list[i].good_number>=input_number){
             flag=1;
             break;
         }
     }
-    if(!flag){cout<<"The ID of the good does not exist or the good has been out of sale. Back to the user menu..."<<endl; return;}
-    input_balance=is_buy_success(string input_ID, int input_number);
+    if(!flag){
+        if(good_list[i].good_state==0){cout<<"The good has been out of sale. Back to the user menu..."<<endl; return;}
+        else if(good_list[i].good_number<input_number){cout<<"The number of good is not enough. Back to the user menu..."<<endl; return;}
+        else {cout<<"The ID of the good does not exist. Back to the user menu..."<<endl; return;}
+    input_balance=is_buy_success(userID, input_ID, input_number);
     if(input_balance>=0){
         cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
         cout<<"buy remind: "<<endl;
@@ -311,6 +314,23 @@ void buyers::buyer_check_goods_info(string userID){
 void buyers::back_to_users(){
     cout<<"Back to the user menu..."<<endl;return;
 }
+
+double is_buy_success(string userID, string input_ID, int input_number){
+    double input_balance=0;
+    for(int i=0;i<user_count;++i){
+        if(user_list[i].user_ID==userID){
+            input_balance=user_list[i].user_balance;
+            for(int j=0;j<good_count;++j){
+                if(good_list[j].good_ID==input_ID){
+                    if(good_list[j].good_price*input_number<=input_balance) return (input_balance-good_list[j].good_price*input_number);
+                    else return -1.0;
+                }
+            }
+        }
+    }
+}
+
+//*****************************************************************************************************************************
 
 void users::seller_module(string userID){
     sellers S;
@@ -521,14 +541,78 @@ void sellers::back_to_users(){
     cout<<"Back to the user menu..."<<endl;return;
 }
 
+//*****************************************************************************************************************************************
 
-void users::user_self_info(){
+void users::user_self_info(string userID){
+    users U0;
+    int choice;
+	while (true) {
+		//system("cls");
+		U0.user_self_info_menu();
+		cout << "Please enter a number:";
+		cin >> choice;
+		while (!cin) {
+			cout << "Error! Please enter a number:";
+			//cin.clear();
+			//cin.sync();
+			cin >> choice;
+		}
+		switch (choice) {
+		case 1:U0.check_self_info(userID); break;
+		case 2:U0.change_self_info(userID); break;
+		case 3:U0.recharge(userID); break;
+		case 4:U0.back_to_users(); return; break;
+		default:cout << "Error! Please enter a number:" << endl; break;  ///////////////////////////////check enter 8!!!!!!!!!!!!!!!!!!!!!!!!!!
+		}
+	}
+}
 
+void users::user_self_info_menu(){
+    cout << "=====================================================================================" << endl;
+	cout << "1.check info 2.change info 3.recharge 4.back to user menu" << endl;
+	cout << "=====================================================================================" << endl;
+}
+
+void users::check_self_info(string userID){  //TODO calculator
+    string input_name, input_phone, input_address;
+    double input_balance;
+    for(int i=0;i<user_count;++i){
+        if(user_list[i].user_ID==userID){
+            input_name=user_list[i].user_name;
+            input_phone=user_list[i].user_tel;
+            input_address=user_list[i].user_address;
+        }
+
+    }
+    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout<<"user's name: "<<input_name<<endl;
+    cout<<"user's phoneNumber: "<<input_phone<<endl;
+    cout<<"user's address: "<<input_address<<endl;
+    cout<<"user's balance: "<<input_balance<<endl;
+    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	
+}
+void users::change_self_info(string userID){
+    int choice; string inputa;
+    cout<<"Please choos the info you want to change(1. user name 2. user phoneNumber 3. address):";
+    cin>>choice;
+    if(choice==1){cout<<"Please enter the new user name:"; cin>>inputa;}
+    else if(choice==2){cout<<"Please enter the new user phoneNumber:"; cin>>inputa;}
+    else if(choice==3){cout<<"Please enter the new address:"; cin>>inputa;}
+    else {cout<<"unvalid choice. Back to the user menu..."<<endl; return;}
+    for(int i=0;i<user_count;++i){
+        if(user_list[i].user_ID==userID){
+            
+        }
+    }
+}
+void users::recharge(string userID){
+
+}
+void users::back_to_users(){
+    cout<<"Back to the user menu..."<<endl;return;
 }
 void users::user_logout(){
-
+    cout<<"user logout. Back to the main menu..."<<endl; return;
 }
 
-double is_buy_success(string input_ID, int input_number){
-    
-}
