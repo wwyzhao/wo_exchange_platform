@@ -10,8 +10,6 @@ class Admins {
 	string admin_code="123456";
 public:
 	Admins(){
-		//for(int i=5;i<100;++i)admin_name[i]=0;
-		//for(int i=6;i<100;++i)admin_code[i]=0;
 		
 	} /////////////////////////////////Admins() ~Admins!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	void admin_menu();
@@ -23,7 +21,6 @@ public:
 	void admin_check_users();
 	void admin_forbid_users();
 	void admin_logout();
-
 };
 void admins_module();
 #endif // ADMINS_H

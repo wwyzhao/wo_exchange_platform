@@ -32,10 +32,6 @@ public:
 	} /////////////////////////////////goods() ~goods!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	void good_read();
 	void good_show();
-	//void good_description();
-	//bool good_added_time();
-	//void good_state();
-	//void seller_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
 
 };
 extern goods good_list[100];

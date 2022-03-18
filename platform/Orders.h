@@ -24,8 +24,6 @@ public:
 	void exchange_price();
 	bool order_description();
 	void exchange_date();
-	//void seller_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
-	//void buyer_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
 };
 
 extern orders order_list[100];
