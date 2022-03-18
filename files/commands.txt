@@ -11,3 +11,11 @@
 2022-03-18 07:32:53: SELECT * FROM user
 2022-03-18 07:33:02: UPDATE commodity SET state=outSale WHERE sellerID = U001
 2022-03-18 07:33:02: UPDATE user SET userState=inactive WHERE userID = U001
+2022-03-18 13:03:15: SELECT * FROM commodity
+2022-03-18 13:03:22: SELECT * FROM commodity WHERE commodityName CONTAINS Kits
+2022-03-18 13:03:36: SELECT * FROM order
+2022-03-18 13:03:40: SELECT * FROM user
+2022-03-18 13:03:54: UPDATE commodity SET state=outSale WHERE sellerID = U001
+2022-03-18 13:03:54: UPDATE user SET userState=inactive WHERE userID = U001
+2022-03-18 13:25:03: INSERT INTO commodity VALUES (Kites,15.000000,6,NFT) 
+2022-03-18 13:39:21: SELECT * FROM order

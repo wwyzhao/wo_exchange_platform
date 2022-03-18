@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include "Users.h"
 using namespace std;
 #ifndef ORDERS_H
 #define ORDERS_H
@@ -13,6 +14,7 @@ class orders {
 	string seller_ID;
 	string buyer_ID;
 	friend void sellers::seller_check_orders(string userID);
+	friend void buyers::buyer_check_orders(string userID);
 public:
 	orders(){
 

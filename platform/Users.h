@@ -35,6 +35,7 @@ extern int user_count;
 extern const char* user_title[7];
 void users_signup();
 void users_login();
+double is_buy_success(string input_ID, int input_number);
 
 
 

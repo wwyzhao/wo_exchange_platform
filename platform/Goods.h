@@ -21,6 +21,10 @@ class goods {
 	friend void sellers::seller_check_published_goods(string userID);
 	friend void sellers::seller_del_goods(string userID);
 	friend void sellers::seller_publish_goods(string userID);
+	friend void sellers::seller_change_goods_info(string userID);
+	friend void buyers::buyer_check_goods(string userID);
+	friend void buyers::buyer_check_goods_info(string userID);
+	friend void buyers::buy_goods(string userID);
 public:
 	goods(){
 
@@ -28,7 +32,7 @@ public:
 	void good_read();
 	void good_show();
 	//void good_description();
-	bool good_added_time();
+	//bool good_added_time();
 	//void good_state();
 	//void seller_ID();  ////////////////////////friend?!!!!!!!!!!!!!!!!!!!
 
