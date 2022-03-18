@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include "Admins.h"
+#include "Users.h"
 using namespace std;
 #ifndef GOODS_H
 #define GOODS_H
@@ -17,6 +18,9 @@ class goods {
 	friend void Admins::admin_search_goods();
 	friend void Admins::admin_del_goods();
 	friend void Admins::admin_forbid_users();
+	friend void sellers::seller_check_published_goods(string userID);
+	friend void sellers::seller_del_goods(string userID);
+	friend void sellers::seller_publish_goods(string userID);
 public:
 	goods(){
 

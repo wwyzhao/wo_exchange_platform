@@ -28,6 +28,11 @@ bool Admins::admin_login() {
 	return true;
 }
 void Admins::admin_check_goods(){  //TODOtab print
+	string temp_time, temp_word;
+	temp_time=get_time();
+	//cout<<temp_time<<endl;
+	temp_word="SELECT * FROM commodity";
+	write_sql_command(temp_time, temp_word);
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	int i=0;
 	for(i=0;i<7;++i){
@@ -45,6 +50,11 @@ void Admins::admin_search_goods(){
 	int flag=0;
 	cout << "Please enter the good's name:";   
 	cin >> input_name;
+	string temp_time, temp_word;
+	temp_time=get_time();
+	//cout<<temp_time<<endl;
+	temp_word="SELECT * FROM commodity WHERE commodityName CONTAINS "+input_name;
+	write_sql_command(temp_time, temp_word);
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	for(int i=0;i<good_count;++i){
 		if((good_list[i].good_name.find(input_name))!=-1){
@@ -86,6 +96,11 @@ void Admins::admin_del_goods(){
 	cin>>input_yn;
 	if(input_yn[0]=='y'){   // TODO////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		good_list[i].good_state=0;
+		string temp_time, temp_word;
+		temp_time=get_time();
+		//cout<<temp_time<<endl;
+		temp_word="UPDATE commodity SET state=outSale WHERE commodityID = "+input_ID;
+		write_sql_command(temp_time, temp_word);
 		cout<<"Successfully delete this good"<<endl;
 	}
 	else{
@@ -93,6 +108,11 @@ void Admins::admin_del_goods(){
 	}
 }
 void Admins::admin_check_orders(){//TODO tab print
+	string temp_time, temp_word;
+	temp_time=get_time();
+	//cout<<temp_time<<endl;
+	temp_word="SELECT * FROM order";
+	write_sql_command(temp_time, temp_word);
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	int i=0;
 	for(i=0;i<6;++i){
@@ -107,6 +127,11 @@ void Admins::admin_check_orders(){//TODO tab print
 
 }
 void Admins::admin_check_users(){
+	string temp_time, temp_word;
+	temp_time=get_time();
+	//cout<<temp_time<<endl;
+	temp_word="SELECT * FROM user";
+	write_sql_command(temp_time, temp_word);
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	int i=0;
 	for(i=0;i<6;++i){
@@ -148,6 +173,15 @@ void Admins::admin_forbid_users(){
 				good_list[i].good_state=0;
 			}
 		}
+		string temp_time, temp_word;
+		temp_time=get_time();
+		//cout<<temp_time<<endl;
+		temp_word="UPDATE commodity SET state=outSale WHERE sellerID = "+input_ID;
+		write_sql_command(temp_time, temp_word);
+		temp_time=get_time();
+		//cout<<temp_time<<endl;
+		temp_word="UPDATE user SET userState=inactive WHERE userID = "+input_ID;
+		write_sql_command(temp_time, temp_word);
 		cout<<"Successfully forbid this user"<<endl;
 	}
 	else{

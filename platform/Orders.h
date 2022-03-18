@@ -12,6 +12,7 @@ class orders {
 	string order_date;
 	string seller_ID;
 	string buyer_ID;
+	friend void sellers::seller_check_orders(string userID);
 public:
 	orders(){
 

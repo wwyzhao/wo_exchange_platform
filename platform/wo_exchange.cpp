@@ -1,4 +1,5 @@
 #include<iostream>
+#include<time.h>
 //#include <unistd.h>
 #include "Admins.h"
 #include "Goods.h"
@@ -6,12 +7,6 @@
 #include "wo_exchange.h"
 using namespace std;
 
-void users_signup() {
-	
-}
-void users_login() {
-
-}
 
 void wo_exchange() {
 	int choice;
@@ -41,4 +36,27 @@ void main_menu() {
 	cout << "1.admins login 2.users signup 3.users login 4.exit" << endl;
 	cout << "===================================================" << endl;
 
+}
+
+string get_time(){
+	time_t timep;
+    time (&timep);
+    char tmp[64];
+    strftime(tmp, sizeof(tmp), "%Y-%m-%d %H:%M:%S",localtime(&timep));
+    return tmp;
+}
+string get_day(){
+	time_t timep;
+    time (&timep);
+    char tmp[64];
+    strftime(tmp, sizeof(tmp), "%Y-%m-%d",localtime(&timep));
+    return tmp;
+}
+
+void write_sql_command(string temp_time, string temp_word){
+	fstream outfile;
+	outfile.open("../files/commands.txt",ios::out|ios::app);
+	//outfile<<endl;
+	outfile<<temp_time<<": "<<temp_word<<endl;
+	outfile.close();
 }

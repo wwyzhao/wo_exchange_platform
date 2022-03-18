@@ -1,2 +1,13 @@
 2022-02-16 10:44:17: SELECT * FROM commodity
 2022-02-16 10:44:45: SELECT * FROM commodity
+2022-03-18 07:12:16: SELECT * FROM commodity
+2022-03-18 07:14:32: SELECT * FROM commodity
+
+2022-03-18 07:14:36: SELECT * FROM commodity
+2022-03-18 07:32:21: SELECT * FROM commodity
+2022-03-18 07:32:32: SELECT * FROM commodity WHERE commodityName CONTAINS bad
+2022-03-18 07:32:46: UPDATE commodity SET state=outSale WHERE commodityID = M002
+2022-03-18 07:32:50: SELECT * FROM order
+2022-03-18 07:32:53: SELECT * FROM user
+2022-03-18 07:33:02: UPDATE commodity SET state=outSale WHERE sellerID = U001
+2022-03-18 07:33:02: UPDATE user SET userState=inactive WHERE userID = U001
