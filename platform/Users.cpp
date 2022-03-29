@@ -476,6 +476,35 @@ void sellers::seller_change_goods_info(string userID){  //TODO change the file
         if(input_choice==1){good_list[i].good_price=input_price;temp_word="UPDATE commodity SET price= "+to_string(input_price)+"WHERE good's ID= "+input_ID;}
         else if(input_choice==2){good_list[i].good_description=input_descript;temp_word="UPDATE commodity SET description= "+input_descript+"WHERE good's ID= "+input_ID;}
 		write_sql_command(temp_time, temp_word);
+        ifstream infile;
+		infile.open("../files/commodity.txt", ios::in);
+		if (!infile.is_open()) exit(-1);
+		char buf[1024]; string sbuf;
+		infile.getline(buf,sizeof(buf));
+		sbuf=sbuf+buf+'\n';
+		while (infile.getline(buf,sizeof(buf))){
+			string tempbuf=buf;
+			char *p;
+        	p=strtok(buf,",");
+			if(p==input_ID){
+                if(good_list[i].good_state==1){
+                    sbuf=sbuf+good_list[i].good_ID+','+good_list[i].good_name+','+to_string(good_list[i].good_price)+','+to_string(good_list[i].good_number)+','+good_list[i].good_description+','+good_list[i].seller_ID+','+good_list[i].good_added_date+','+"onSale\n";
+                }
+                else{
+                    sbuf=sbuf+good_list[i].good_ID+','+good_list[i].good_name+','+to_string(good_list[i].good_price)+','+to_string(good_list[i].good_number)+','+good_list[i].good_description+','+good_list[i].seller_ID+','+good_list[i].good_added_date+','+"outSale\n";
+                }
+			}
+			else sbuf=sbuf+tempbuf+'\n';
+		}
+		int templen=sbuf.length();
+		sbuf[templen]='\0';
+		cout<<sbuf<<endl;
+		infile.close();
+		fstream outfile;
+        outfile.open("../files/commodity.txt",ios::out);
+        //outfile<<endl;
+        outfile<<sbuf;
+        outfile.close();
     	cout<<"Successfully changed the info of this good!"<<endl;
 	}
 	else{
@@ -500,13 +529,37 @@ void sellers::seller_del_goods(string userID){
                 cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
                 cout<<"Please choose(y/n):";
                 cin>>input_yn;
-                if(input_yn[0]=='y'){   // TODO////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if(input_yn[0]=='y'){  
                     good_list[i].good_state=0;
                     string temp_time, temp_word;
                     temp_time=get_time();
                     //cout<<temp_time<<endl;
                     temp_word="UPDATE commodity SET state=outSale WHERE commodityID = "+input_ID;
                     write_sql_command(temp_time, temp_word);
+                    ifstream infile;
+                    infile.open("../files/commodity.txt", ios::in);
+                    if (!infile.is_open()) exit(-1);
+                    char buf[1024]; string sbuf;
+                    infile.getline(buf,sizeof(buf));
+                    sbuf=sbuf+buf+'\n';
+                    while (infile.getline(buf,sizeof(buf))){
+                        string tempbuf=buf;
+                        char *p;
+                        p=strtok(buf,",");
+                        if(p==input_ID){
+                            sbuf=sbuf+good_list[i].good_ID+','+good_list[i].good_name+','+to_string(good_list[i].good_price)+','+to_string(good_list[i].good_number)+','+good_list[i].good_description+','+good_list[i].seller_ID+','+good_list[i].good_added_date+','+"outSale\n";
+                        }
+                        else sbuf=sbuf+tempbuf+'\n';
+                    }
+                    int templen=sbuf.length();
+                    sbuf[templen]='\0';
+                    cout<<sbuf<<endl;
+                    infile.close();
+                    fstream outfile;
+                    outfile.open("../files/commodity.txt",ios::out);
+                    //outfile<<endl;
+                    outfile<<sbuf;
+                    outfile.close();
                     cout<<"Successfully delete this good"<<endl;
                 }
                 else{

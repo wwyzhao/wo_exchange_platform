@@ -4,12 +4,12 @@ project(Exchange_platform)
 set(CMAKE_CXX_STANDARD 14)
 
 add_library(Exchange_platformLib STATIC
-        platform/wo_exchange
-        platform/Admins
-        platform/Goods
-        platform/Users
-        platform/Orders
-        run/run_exchange_platform
+        platform/wo_exchange.cpp
+        platform/Admins.cpp
+        platform/Goods.cpp
+        platform/Users.cpp
+        platform/Orders.cpp
+        run/run_exchange_platform.cpp
 )
 
 target_include_directories(Exchange_platformLib
