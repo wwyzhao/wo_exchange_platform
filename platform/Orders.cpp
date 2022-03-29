@@ -37,8 +37,10 @@ void orders::order_read(){
         O1.buyer_ID=p;
         order_list[order_count]=O1;
         order_count++;
+        
         //for(int i=0;i<8;++i)cout<<p[i]<<endl;
 	}
+    infile.close();
 }
 
 void orders::order_show(){

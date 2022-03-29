@@ -42,8 +42,10 @@ void goods::good_read(){
         else G1.good_state=0;
         good_list[good_count]=G1;
         good_count++;
+       
         //for(int i=0;i<8;++i)cout<<p[i]<<endl;
 	}
+    infile.close();
 }
 
 void goods::good_show(){

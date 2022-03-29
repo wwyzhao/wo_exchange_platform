@@ -4,6 +4,7 @@
 #include<string.h>
 #include<string>
 #include<stdlib.h>
+#include<stdlib.h>
 #include<time.h>
 #include "Goods.h"
 #include "Orders.h"
@@ -49,6 +50,7 @@ void users::user_read(){
         user_count++;
         //for(int i=0;i<8;++i)cout<<p[i]<<endl;
 	}
+    infile.close();
 }
 
 void users::user_show(){
@@ -86,8 +88,8 @@ void users_signup() {
 	cout<<"Please choose(y/n):";
     string input_yn;
 	cin>>input_yn;
-	if(input_yn[0]=='y'){   // TODO////////////////////////////////write in the file!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! good file and user file
-		if(user_count>=99)input_userID=to_string(user_count+1);
+	if(input_yn[0]=='y'){   // TODO////////////////////////////////user oder index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if(user_count>=99)input_userID=to_string(+1);
         else if(user_count>=9)input_userID="0"+to_string(user_count+1);
         else input_userID="00"+to_string(user_count+1);
         users temp;
@@ -100,11 +102,11 @@ void users_signup() {
         //outfile<<endl;
         outfile<<"U"<<input_userID<<","<<input_new_name<<","<<input_password<<","<<input_phoneNumber<<","<<input_address<<","<<input_balance<<","<<"active"<<endl;
         outfile.close();
+        cout<<"Successfully signed up. Back to the main menu..."<<endl;return;
         }
     else{
         cout<<"Not to signup. Back to the main menu..."<<endl;return;
     }
-
 }
 
 void users_login() {
@@ -153,7 +155,7 @@ void users::users_module(string userID){
 		switch (choice) {
 		case 1:U.buyer_module(userID); break;
 		case 2:U.seller_module(userID); break;
-		case 3:U.user_self_info(); break;
+		case 3:U.user_self_info(userID); break;
 		case 4:U.user_logout(); return; break;
 		default:cout << "Error! Please enter a number:" << endl; break;  ///////////////////////////////check enter 8!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
@@ -228,7 +230,7 @@ void buyers::buy_goods(string userID){
     if(!flag){
         if(good_list[i].good_state==0){cout<<"The good has been out of sale. Back to the user menu..."<<endl; return;}
         else if(good_list[i].good_number<input_number){cout<<"The number of good is not enough. Back to the user menu..."<<endl; return;}
-        else {cout<<"The ID of the good does not exist. Back to the user menu..."<<endl; return;}
+        else {cout<<"The ID of the good does not exist. Back to the user menu..."<<endl; return;}}
     input_balance=is_buy_success(userID, input_ID, input_number);
     if(input_balance>=0){
         cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
@@ -244,6 +246,7 @@ void buyers::buy_goods(string userID){
         cout<<"Not success. Balance not enough. You can recharge in the user self info. Back to the user menu... "<<endl; ///TODO change the buyer balance seller balance good order file
     }
 }
+
 void buyers::buyer_search_goods(string userID){
     string input_name;
 	int flag=0;
@@ -319,7 +322,7 @@ double is_buy_success(string userID, string input_ID, int input_number){
     double input_balance=0;
     for(int i=0;i<user_count;++i){
         if(user_list[i].user_ID==userID){
-            input_balance=user_list[i].user_balance;
+            input_balance=stod(user_list[i].user_balance);
             for(int j=0;j<good_count;++j){
                 if(good_list[j].good_ID==input_ID){
                     if(good_list[j].good_price*input_number<=input_balance) return (input_balance-good_list[j].good_price*input_number);
