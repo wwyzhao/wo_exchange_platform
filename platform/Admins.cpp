@@ -38,7 +38,7 @@ void Admins::admin_check_goods(){  //TODOtab print
 	//cout<<temp_time<<endl;
 	temp_word="SELECT * FROM commodity";
 	write_sql_command(temp_time, temp_word);
-	cout << "--------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl;
 	int i=0;
 	for(i=0;i<7;++i){
 		cout<<good_title[i]<<'\t';
@@ -48,7 +48,7 @@ void Admins::admin_check_goods(){  //TODOtab print
 	for(int j=0;j<good_count;++j){
 		good_list[j].good_show();
 	}
-	cout << "---------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 void Admins::admin_search_goods(){
 	string input_name;
@@ -277,12 +277,6 @@ void Admins::admin_logout(){
 }
 
 void admins_module() {
-	goods GG;
-	GG.good_read();
-	orders OO;
-	OO.order_read();
-	users UU;
-	UU.user_read();
 	Admins AA;
 	if (!AA.admin_login()) return;/////////
 	int choice;

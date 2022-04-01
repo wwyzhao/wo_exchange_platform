@@ -15,11 +15,12 @@ class orders {
 	string buyer_ID;
 	friend void sellers::seller_check_orders(string userID);
 	friend void buyers::buyer_check_orders(string userID);
+	friend void buyers::buy_goods(string userID);
 public:
 	orders(){
 
 	} /////////////////////////////////orders() ~orders!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	void order_read();
+	void order_read(orders O1);
 	void order_show();
 	void exchange_price();
 	bool order_description();

@@ -7,7 +7,7 @@ goods good_list[100];
 int good_count=0;
 const char* good_title[8]={"commodityID","commodityName","price","number","description","sellerID","addedDate","state"};
 
-void goods::good_read(){
+void goods::good_read(goods G1){
     //int i=0;
     ifstream infile;
 	infile.open("../files/commodity.txt", ios::in);
@@ -17,7 +17,6 @@ void goods::good_read(){
     //cout<<buf<<endl;
     while (infile.getline(buf,sizeof(buf)))
 	{
-		goods G1;
         char *p;
         p=strtok(buf,",");
         G1.good_ID=p;

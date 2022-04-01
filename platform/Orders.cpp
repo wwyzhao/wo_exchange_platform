@@ -7,7 +7,7 @@ orders order_list[100];
 int order_count=0;
 const char* order_title[7]={"orderID","commodityID","unitPrice","number","date","sellerID","buyerID"};
 
-void orders::order_read(){
+void orders::order_read(orders O1){
     //int i=0;
     ifstream infile;
 	infile.open("../files/order.txt", ios::in);
@@ -17,7 +17,6 @@ void orders::order_read(){
     //cout<<buf<<endl;
     while (infile.getline(buf,sizeof(buf)))
 	{
-		orders O1;
         char *p;
         p=strtok(buf,",");
         O1.order_ID=p;

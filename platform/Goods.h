@@ -31,7 +31,7 @@ public:
 	goods(){
 
 	} /////////////////////////////////goods() ~goods!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	void good_read();
+	void good_read(goods G1);
 	void good_show();
 
 };
